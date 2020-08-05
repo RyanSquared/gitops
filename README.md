@@ -11,6 +11,41 @@ Secrets are encrypted in this repository using [SOPS](https://github.com/mozilla
 If you'd like to change anything about hashbang's infrastructure, please send a PR!
 
 
+# Deployment
+
+Deployment assumes you're on a Kubernetes system with Cilium and CoreDNS
+already installed, with no other Applications configured. If you have any
+applications or deployments configured that fill the need of resources, such
+as a service-provided ingress, this guide is not meant to handle those, but
+you should be able to avoid setting up the GitOps copy of the application or
+deployment.
+
+## Preparing ArgoCD for First Deployment
+
+Requisites for first deployment:
+
+- [sops](https://github.com/mozilla/sops)
+- [ksops](https://github.com/viaduct-ai/kustomize-sops)
+- [htpasswd](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
+<!-- - [helm](https://github.com/helm/helm) (ingress-nginx) -->
+
+**NOTE:** You should not need the above tools after this step.
+
+### Building a Deployment Decryption Key
+
+ArgoCD needs a key to decrypt any secrets (via ksops) that will be deployed, so
+we will use GPG to generate the key, and sops to store the key in a Secret.
+
+
+After running `argocd/setup.sh`, the following changes have been made:
+
+- You now have an ArgoCD Deployment key.
+- You now have a .sops.yaml configured with the above key, and your keys.
+- You now have an argocd/deploy-key.enc.yaml, storing the secret key matching
+  the above key.
+- You now have an argocd/ssh-key.enc.yaml, storing an SSH key that can be used
+  to connect to a Git repository.
+
 ## Common Tasks
 
 ### Adding New Admin(s)
