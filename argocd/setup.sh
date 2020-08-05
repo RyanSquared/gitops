@@ -157,3 +157,8 @@ type: Opaque
 stringData:
     notifiers.yaml: ""
 EOF
+
+# Configure the Repo URL for all ArgoCD Applications
+for file in argocd/applications/*.yaml; do
+  sed -i "s|repoURL: .\+|repoURL: $ARGOCD_GITOPS_REPOSITORY|" "$file"
+done

@@ -27,24 +27,11 @@ Requisites for first deployment:
 - [sops](https://github.com/mozilla/sops)
 - [ksops](https://github.com/viaduct-ai/kustomize-sops)
 - [htpasswd](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
-<!-- - [helm](https://github.com/helm/helm) (ingress-nginx) -->
 
 **NOTE:** You should not need the above tools after this step.
 
-### Building a Deployment Decryption Key
-
-ArgoCD needs a key to decrypt any secrets (via ksops) that will be deployed, so
-we will use GPG to generate the key, and sops to store the key in a Secret.
-
-
-After running `argocd/setup.sh`, the following changes have been made:
-
-- You now have an ArgoCD Deployment key.
-- You now have a .sops.yaml configured with the above key, and your keys.
-- You now have an argocd/deploy-key.enc.yaml, storing the secret key matching
-  the above key.
-- You now have an argocd/ssh-key.enc.yaml, storing an SSH key that can be used
-  to connect to a Git repository.
+Follow the instructions in the ArgoCD README.md to instantiate an initial
+configuration for your repository.
 
 ## Common Tasks
 

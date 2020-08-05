@@ -5,11 +5,31 @@ With [KSOPS](https://github.com/viaduct-ai/kustomize-sops) integration.
 
 # Bootstrapping
 
-On a new kubernetes cluster you can run:
+To instantiate a clean repository with a quickly-configured ArgoCD, run the
+script `setup.sh`. This will create an SSH and GPG key for ArgoCD to connect
+to the remote repository. This will also create a .sops.yaml configuration to
+allow for editing secrets, and create various secrets and configurations based
+on user input.
 
+Assuming ArgoCD is now configured, it can be deployed to the Kubernetes
+cluster. Take note of the underscores in `--enable_alpha_plugins`.
+
+```sh
+kustomize build --enable_alpha_plugins . | kubectl apply -f
 ```
-kustomize build . | kubectl apply -f -
+
+Once ArgoCD is deployed and started, the Application resources can now be
+deployed by running the above command again, and you should now be able to
+deploy changes to ArgoCD through ArgoCD itself.
+
+Before ingress-nginx is set up, ArgoCD can be accessed by running:
+
+```sh
+kubectl -n argocd port-forward service/argocd-server 5000:443
 ```
+
+You can now access ArgoCD through your browser by navigating to
+https://localhost:5000.
 
 
 # Upgrading
