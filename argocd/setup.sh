@@ -144,3 +144,16 @@ data:
         name: ssh-key
       url: $ARGOCD_GITOPS_REPOSITORY
 EOF
+
+# Configure an empty notifiers.yaml for ArgoCD Notifications
+sops --input-type yaml --output-type yaml -e /dev/stdin > argocd/argocd-notifications/secret.enc.yaml <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+    name: argocd-notifications-secret
+    annotations:
+        kustomize.config.k8s.io/behavior: merge
+type: Opaque
+stringData:
+    notifiers.yaml: ""
+EOF
