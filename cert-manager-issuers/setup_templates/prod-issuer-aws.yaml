@@ -14,12 +14,11 @@ spec:
           class: nginx
     - selector:
         dnsZones:
-          - "irc.hashbang.sh"
-          - "hashbang.sh"
+          - "irc.syntixi.io"  # TODO variable-ify
       dns01:
         route53:
-          region: us-west-2
-          accessKeyID: AKIAR7CEWFK3VMVXHEN2
+          region: ${AWS_DEFAULT_REGION}
+          accessKeyID: ${AWS_ACCESS_KEY_ID}
           secretAccessKeySecretRef:
-            name: dns-iam-key
-            key: iam-key
+            name: cert-manager-dns-aws-secret
+            key: key
