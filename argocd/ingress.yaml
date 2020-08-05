@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-  - host: argocd.hashbang.sh
+  - host: argocd.syntixi.io
     http:
       paths:
       - backend:
@@ -20,5 +20,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - argocd.hashbang.sh
+    - argocd.syntixi.io
     secretName: argocd-secret # do not change, this is provided by Argo CD
