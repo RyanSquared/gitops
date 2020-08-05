@@ -7,7 +7,7 @@ resources:
 # - networkpolicy.yaml  # TODO figure out how to make stable (by Ryan)
 - service-monitor.yaml
 patches:
-- external-dns-cloudflare.yaml
+- external-dns-${DNS_PROVIDER}.yaml
 generators:
 - secret-generator.yaml
 images:

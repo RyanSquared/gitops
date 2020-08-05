@@ -54,7 +54,7 @@ spec:
         args:
         - --source=service
         - --source=ingress
-        - --provider=cloudflare
+        - --provider=${DNS_PROVIDER}
         - --registry=txt
         - --txt-owner-id=k8s-hashbang
         - --txt-prefix=_owner.
