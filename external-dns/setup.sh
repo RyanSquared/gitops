@@ -33,6 +33,8 @@ case $DNS_PROVIDER in
 
   cloudflare)
     # template for CloudFlare dns provider
+    echo "When using CloudFlare, the API key for the account must be given,"
+    echo "NOT an API Token."
     echo -n "Please enter the CloudFlare API Email and Key, space delimited: "
     read CF_API_EMAIL CF_API_KEY
     
