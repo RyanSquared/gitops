@@ -5,14 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://charts.jetstack.io'
-    targetRevision: v0.15.0
-    chart: cert-manager
-  values: |
-    prometheus:
-      servicemonitor:
-        enabled: true
-    installCRDs: true
+    repoURL: git@github.com:RyanSquared/gitops.git
+    path: cert-manager/
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
