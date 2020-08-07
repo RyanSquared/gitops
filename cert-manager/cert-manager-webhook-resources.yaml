@@ -48,7 +48,7 @@ metadata:
     app: cert-manager
 spec:
   selector: 
-    app: irc
+    app: cert-manager
   ports:
   - name: https
     port: 443
