@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:hashbang/gitops.git
+    repoURL: git@github.com:RyanSquared/gitops.git
     path: book/
     targetRevision: HEAD
   destination:
