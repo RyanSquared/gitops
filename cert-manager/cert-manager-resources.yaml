@@ -23,7 +23,7 @@ spec:
         - "--leader-election-namespace=kube-system"
         env:
         - name: POD_NAMESPACE
-          values:
+          value:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
