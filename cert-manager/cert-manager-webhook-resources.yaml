@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: cert-manager-webhook-deployment
   labels:
-    app: cert-manager
+    app: webhook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cert-manager
+      app: webhook
   template:
     metadata:
       labels:
-        app: cert-manager
+        app: webhook
     spec:
       containers:
       - image: "quay.io/jetstack/cert-manager-webhook:v0.16.0"
@@ -45,10 +45,10 @@ kind: Service
 metadata:
   name: cert-manager-webhook
   labels:
-    app: cert-manager
+    app: webhook
 spec:
   selector: 
-    app: cert-manager
+    app: webhook
   ports:
   - name: https
     port: 443

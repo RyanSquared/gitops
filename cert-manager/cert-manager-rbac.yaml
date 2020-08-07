@@ -1,5 +1,4 @@
 # TODO Figure out where namespaces are needed
-# TODO label components properly
 
 # Default RBAC Roles
 apiVersion: rbac.authorization.k8s.io/v1
