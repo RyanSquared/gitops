@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: cert-manager
+    prometheus: default
+  name: cert-manager
+spec:
+  endpoints:
+  - interval: 60s
+    path: /metrics
+    scrapeTimeout: 30s
+    targetPort: 9402
+  jobLabel: cert-manager
+  namespaceSelector:
+    matchNames:
+    - cert-manager
+  selector:
+    matchLabels:
+      app: cert-manager
