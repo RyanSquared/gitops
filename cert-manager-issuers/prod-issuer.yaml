@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: team@hashbang.sh
+    email: vandor2012@gmail.com  # TODO variable-ify
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -17,7 +17,7 @@ spec:
           - "irc.syntixi.io"  # TODO variable-ify
       dns01:
         cloudflare:
-          email: 
+          email: vandor2012@gmail.com  # TODO variable-ify
           apiKeySecretRef:
             name: cert-manager-dns-aws-secret
             key: key
