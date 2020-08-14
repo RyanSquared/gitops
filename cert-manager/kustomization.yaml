@@ -3,7 +3,8 @@ kind: Kustomization
 resources:
 - namespace.yaml
 # CustomResourceDefinition
-- cert-manager-custom-resource-definitions.yaml
+#- cert-manager-custom-resource-definitions.yaml
+# relies on https://github.com/hashbang/gitops/issues/46 argocd kubectl 1.18.8
 # Deployments and Services (no Ingress)
 - cert-manager-resources.yaml
 - cert-manager-cainjector-resources.yaml

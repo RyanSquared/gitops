@@ -33,6 +33,13 @@ Requisites for first deployment:
 Follow the instructions in the ArgoCD README.md to instantiate an initial
 configuration for your repository.
 
+Once ArgoCD is installed, the setup.sh should be run for the following
+applications, in order:
+
+- external-dns
+- ingress-nginx // **TODO**
+- cert-manager // **TODO** also import CRDs manually
+
 ## Common Tasks
 
 ### Adding New Admin(s)
