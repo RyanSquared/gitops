@@ -31,6 +31,10 @@ kubectl -n argocd port-forward service/argocd-server 5000:443
 You can now access ArgoCD through your browser by navigating to
 https://localhost:5000.
 
+# Automatic Refreshing through GitHub Webhooks
+
+The URL you'll want is https://argocd.example.com/api/webhook. Content type is
+JSON. The secret is the one in argocd-secret.enc.yaml.
 
 # Upgrading
 

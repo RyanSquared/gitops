@@ -101,6 +101,9 @@ data:
 
   # admins
   accounts.${ARGOCD_USERNAME}: apiKey,login
+
+  # GitHub integration
+  webhook.github.secret: $(pwgen 24 1)
 EOF
 
 ## Password
