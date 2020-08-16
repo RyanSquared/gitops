@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: website
+resources:
+- namespace.yaml
+- resources.yaml
+- networkpolicy.yaml
+replicas:
+- name: website
+  count: 2
+images:
+  - name: vandor2012/website
+    digest: sha256:40ad2b9d979d4accda205244dc3dca87d5d8401ca3fef7338bfc9dd3caf1e189

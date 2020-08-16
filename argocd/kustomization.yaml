@@ -23,6 +23,7 @@ resources:
 # - applications/site.yaml
 # - applications/userdb-api.yaml
 # - applications/webirc.yaml
+  - applications/website.yaml
 patches:
   - argo-cd-repo-server-ksops.patch.yaml
   - argo-cd-allow-alpha-plugins.patch.yaml
