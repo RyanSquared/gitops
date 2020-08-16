@@ -9,15 +9,9 @@ spec:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
-    - http01:
-        ingress:
-          class: nginx
-    - selector:
-        dnsZones:
-          - "irc.syntixi.io"  # TODO variable-ify
-      dns01:
+    - dns01:
         cloudflare:
           email: vandor2012@gmail.com  # TODO variable-ify
           apiKeySecretRef:
-            name: cert-manager-dns-aws-secret
+            name: cert-manager-dns-cloudflare-secret
             key: key

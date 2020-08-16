@@ -4,20 +4,14 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: team@hashbang.sh
+    email: ${CF_EMAIL}
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
-    - http01:
-        ingress:
-          class: nginx
-    - selector:
-        dnsZones:
-          - "irc.syntixi.io"  # TODO variable-ify
-      dns01:
+    - dns01:
         cloudflare:
           email: ${CF_EMAIL}
           apiKeySecretRef:
-            name: cert-manager-dns-aws-secret
+            name: cert-manager-dns-cloudflare-secret
             key: key
