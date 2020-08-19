@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - resources.yaml
 - service-monitor.yaml
+- userdb-service.yaml
 generators:
   - secret-generator.yaml
 replicas:

@@ -21,7 +21,7 @@ resources:
 # - applications/monitoring.yaml
 # - applications/mtls.yaml
 # - applications/site.yaml
-# - applications/userdb-api.yaml
+  - applications/userdb-api.yaml
 # - applications/webirc.yaml
   - applications/website.yaml
 patches:
