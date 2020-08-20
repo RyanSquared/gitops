@@ -6,10 +6,13 @@ With [KSOPS](https://github.com/viaduct-ai/kustomize-sops) integration.
 # Bootstrapping
 
 To instantiate a clean repository with a quickly-configured ArgoCD, run the
-script `setup.sh`. This will create an SSH and GPG key for ArgoCD to connect
-to the remote repository. This will also create a .sops.yaml configuration to
-allow for editing secrets, and create various secrets and configurations based
-on user input.
+script `argocd/scripts/generate-secrets-config.sh`. This will create an SSH and
+GPG key for ArgoCD to connect to the remote repository. This will also create a
+.sops.yaml configuration to allow for editing secrets, and create various
+secrets and configurations based on user input. The script requires several
+flags to be set to generate all of the required items; you can read the source
+to figure out which ones are needed. There are also some values in
+values.patch.yaml that need to be changed.
 
 Assuming ArgoCD is now configured, it can be deployed to the Kubernetes
 cluster. Take note of the underscores in `--enable_alpha_plugins`.

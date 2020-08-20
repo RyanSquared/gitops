@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:RyanSquared/gitops.git
+    repoURL: git@example.com:example/gitops.git
     path: external-dns/
     targetRevision: HEAD
   destination:
