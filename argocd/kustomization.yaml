@@ -32,9 +32,16 @@ patches:
   - argo-cd-allow-status-badges.patch.yaml
   - argo-cd-enable-jetstack.patch.yaml
   # Edit these!
-  - users.patch.yaml
-  - values.patch.yaml
   - argo-cd-rbac.patch.yaml
+  - users.patch.yaml
+  - repos.patch.yaml
+patchesJson6902:
+  - path: ingress.patch.yaml
+    target:
+      group: networking.k8s.io
+      version: v1beta1
+      kind: Ingress
+      name: argocd-server-ingress
 images:
   - name: argoproj/argocd:v1.6.2
     digest: sha256:b9ccb2655ea8784788b61a376b68776df4d4d0595fd603f12ea0724cbc31eb32
