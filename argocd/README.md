@@ -14,6 +14,32 @@ flags to be set to generate all of the required items; you can read the source
 to figure out which ones are needed. There are also some values in
 values.patch.yaml that need to be changed.
 
+## Options for `generate-secret-config.sh`
+
+- `--generate-github-key`: Generate a new GitHub webhook key
+- `--generate-sops-file`: Generate a `.sops.yaml` file from the given keys and,
+  if `--generate-argocd-key` is used, the newly generated GPG key
+- `--use-fingerprints`: Fingerprints used when generating `.sops.yaml`
+- `--generate-argocd-key`: Generate a new GPG key for ArgoCD as well as create
+  new sops-encrypted secrets for the key
+- `--generate-argocd-ssh-key`: Generate a new SSH key for ArgoCD to use when
+  connecting to an SSH Git origin
+- `--argocd-generate-user-from-username`: Generate a users.patch.yaml based on
+  a given username
+- `--argocd-username`: When the above is not given, use this username when
+  generating a password entry
+- `--argocd-generate-password-from-input`: Give a prompt for a password and
+  use that password for ArgoCD authentication, using the account from either
+  `--argocd-username` or `--argocd-generate-user-from-username`
+- `--argocd-generate-password`: Use the next argument to create a password in a
+  fashion similar to the above
+
+**The following options will change values in `values.patch.yaml`.**
+
+- `--argocd-repository-url`: Remote Git origin (HTTPS or SSH) that ArgoCD will
+  use to pull new updates
+- `--argocd-domain-name`: Domain name to use for the Ingress resource
+
 Assuming ArgoCD is now configured, it can be deployed to the Kubernetes
 cluster. Take note of the underscores in `--enable_alpha_plugins`.
 
