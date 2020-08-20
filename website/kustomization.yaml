@@ -10,4 +10,4 @@ replicas:
   count: 2
 images:
   - name: vandor2012/website
-    digest: sha256:ad0d2abfff9407c57396ef1ad05e190a26ec7fcbe3baac6edf13e9f001297f86
+    digest: sha256:a6e20b152eb93b1106a14ae242ae19a52f4cd882dbdc34696e619847643be359
