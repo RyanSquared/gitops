@@ -1,13 +1,22 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
+patch: |-
+  op: replace
+  path: "/spec/rules/0/host"
+  value: argocd.syntixi.io
+target:
+  group: networking.k8s.io
+  version: v1beta1
+  kind: Ingress
   name: argocd-server-ingress
-spec:
-  rules:
-  - host: argocd.syntixi.io
-  tls:
-  - hosts:
-    - argocd.syntixi.io
+---
+patch: |-
+  op: replace
+  path: "/spec/tls/0hosts/0"
+  value: argocd.syntixi.io
+target:
+  group: networking.k8s.io
+  version: v1beta1
+  kind: Ingress
+  name: argocd-server-ingress
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
