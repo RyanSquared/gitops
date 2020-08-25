@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: external-dns
 resources:
 - namespace.yaml
+- custom-resource-definitions.yaml
 - resources.yaml
 # - networkpolicy.yaml  # TODO figure out how to make stable (by Ryan)
 - service-monitor.yaml
