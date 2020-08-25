@@ -66,7 +66,7 @@ spec:
         - --txt-prefix=_owner.
         - --source=crd
         - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
-        - --crd-source-kind DNSEndpoint
+        - --crd-source-kind=DNSEndpoint
         ports:
           - containerPort: 7979
             name: metrics
