@@ -22,6 +22,8 @@ nginx-ingress:
     autoscaling:
       enabled: true
       minReplicas: 2
+    extraArgs:
+      enable-ssl-passthrough: ""
     metrics:
       enabled: true
       serviceMonitor:
