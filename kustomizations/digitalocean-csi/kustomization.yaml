@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# namespace: digitalocean-csi
+resources:
+- driver.yaml
+- crds.yaml
+- snapshot-validation-webhook.yaml
+- snapshot-controller.yaml
+images:
+- name: k8s.gcr.io/sig-storage/snapshot-validation-webhook:v6.0.1
+  digest: sha256:4561bb8ac0e826cfecf5b2859ee50f7075916c772d4235bad528fc4be616a0cb
+- name: k8s.gcr.io/sig-storage/snapshot-controller:v6.0.1
+  digest: sha256:a49993c3325b4bb010e52b8e661ebc62b9d45ebceae6e432d3ee637a4833bae7
+- name: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
+  digest: sha256:0103eee7c35e3e0b5cd8cdca9850dc71c793cdeb6669d8be7a89440da2d06ae4
