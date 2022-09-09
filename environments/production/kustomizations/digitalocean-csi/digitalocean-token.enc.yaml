@@ -3,15 +3,15 @@ kind: Secret
 metadata:
     name: digitalocean
 stringData:
-    access-token: ENC[AES256_GCM,data:wsyEY8ToGLf+7rAuTndZfHhk0m437nT3Xjo6n/56I8+dDrGw74V20KMilFyF4whTU9i6ZF4oIKMpfYLG9IXLN6jJ/sWbqhI=,iv:YcmUazuvRpyhXVp2cpYq+hyVX0+PR66lkhEzDagHB2M=,tag:mjLLQA6Xv/ikx+vjugJp6Q==,type:str]
+    access-token: ENC[AES256_GCM,data:uvtZ0W2BLdQyU4+uvgXfKAi4Hjtyu0YA6nv4prS6c4B3dltTophEScuc2pbNgWKfiKWSSSnTmCkczy526VhVKsAE9YbATXU=,iv:eBXxieWpQRg7xxERS8kOIDziI1vtUlSuQju3JSvQNUI=,tag:FdJ97LvBNBHKdWx3tXeQDA==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-05-20T06:13:23Z"
-    mac: ENC[AES256_GCM,data:0bUh/AogEbzxDt6v4H+JpBF6oN2VWrw/06MCSi4AOa1RMj3aOaYPC6ubi7wcAavE9cNLK/iWUaRJiKTBJPKaT7B0JqiqbZyqhyN2NeH8PZ6xUvZKOd6Qjo8CutVj/7NAskJh8zLvmBiPVQr0cgkekYnIE0F80mVXE/1zDGlnqII=,iv:kdzHYtO7s3DSo6iFMRSyaWEPu5r0GqzxBGOGGZL33u4=,tag:EISsa95ncedbJW4aD/zM0w==,type:str]
+    lastmodified: "2022-09-09T03:37:46Z"
+    mac: ENC[AES256_GCM,data:b9JhcCt7mFilGdNFhZ0KewhJ13mpo1h/UW7BdObVlgTbDgDBgnUSY+Ef1A9SETgn4Y+jf9RG3o/44OhzZL0X5etcL1u5jJQe60r3HZrH2vCwhJgGQCa3dqQLHeYLOHeLkhxus57zefqzZx3hFWPn4JGGzHcCBaQ1AfV7fdUNvrE=,iv:DAE2mxoT7PDqXZKHqbM3Q14GDBfoJiUtznGPjrZaNn0=,tag:9zQRGo11no5IDgzaDoq02Q==,type:str]
     pgp:
         - created_at: "2022-05-20T06:11:55Z"
           enc: |-
