@@ -16,6 +16,8 @@ spec:
       # encapsulation: VXLANCrossSubnet
       # natOutgoing: Enabled
       encapsulation: None
+  flexVolumePath: None
+  kubeletVolumePluginPath: None
 ---
 # This section configures the Calico API server.
 # For more information, see: https://projectcalico.docs.tigera.io/master/reference/installation/api#operator.tigera.io/v1.APIServer
