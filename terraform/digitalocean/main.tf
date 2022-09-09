@@ -50,7 +50,8 @@ resource "digitalocean_loadbalancer" "public" {
 */
 
 locals {
-  control_plane_patch = "${path.module}/files/control-plane-load-balancer-labels.patch.json"
+  control_plane_patch_labels = "${path.module}/files/control-plane-load-balancer-labels.patch.json"
+  control_plane_patch_cni = "${path.module}/files/default-cni.patch.json"
   config_directory = "${path.root}/${var.talos_config_directory}"
 }
 
@@ -63,7 +64,8 @@ resource "digitalocean_reserved_ip" "control_plane" {
   provisioner "local-exec" {
     command = join(" ", ["talosctl", "gen", "config",
       "--output-dir=${local.config_directory}",
-      "--config-patch-control-plane=@${local.control_plane_patch}",
+      "--config-patch-control-plane=@${local.control_plane_patch_labels}",
+      "--config-patch-control-plane=@${local.control_plane_patch_cni}",
       var.talos_cluster_name,
       "https://${self.ip_address}:6443"
     ])
@@ -95,6 +97,11 @@ resource "digitalocean_droplet" "control_plane" {
 
   provisioner "local-exec" {
     command = "talosctl --talosconfig ${local.config_directory}/talosconfig config node ${self.ipv4_address}"
+  }
+
+  provisioner "local-exec" {
+    # lol
+    command = "sleep 30"
   }
 
   provisioner "local-exec" {
