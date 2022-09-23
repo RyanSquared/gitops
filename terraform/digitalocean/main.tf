@@ -107,6 +107,16 @@ resource "digitalocean_droplet" "control_plane" {
   provisioner "local-exec" {
     command = "talosctl --talosconfig ${local.config_directory}/talosconfig bootstrap"
   }
+
+  /*
+  provisioner "local-exec" {
+    command = "talosctl --talosconfig ${local.config_directory}/talosconfig kubeconfig -f ${local.config_directory}/kubeconfig"
+  }
+
+  provisioner "local-exec" {
+    command = "kubectl --kubeconfig ${local.config_directory}/kubeconfig -n kube-system create configmap calico-config --from-literal=kubernetes_service_host=${digitalocean_reserved_ip.control_plane.ip_address} --from-literal=kubernetes_service_port=6443"
+  }
+  */
 }
 
 resource "digitalocean_reserved_ip_assignment" "control_plane" {
@@ -136,3 +146,15 @@ resource "null_resource" "init-cluster" {
   }
 }
 */
+
+resource "null_resource" "configure_calico" {
+  depends_on = [digitalocean_droplet.worker]
+
+  provisioner "local-exec" {
+    command = "talosctl --talosconfig ${local.config_directory}/talosconfig kubeconfig -f ${local.config_directory}/kubeconfig"
+  }
+
+  provisioner "local-exec" {
+    command = "kubectl --kubeconfig ${local.config_directory}/kubeconfig -n kube-system create configmap calico-config --from-literal=kubernetes_service_host=${digitalocean_reserved_ip.control_plane.ip_address} --from-literal=kubernetes_service_port=6443"
+  }
+}
