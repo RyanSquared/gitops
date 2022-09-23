@@ -9,7 +9,7 @@ terraform {
 
 resource "digitalocean_custom_image" "talos" {
   name = "talos"
-  url = "https://github.com/siderolabs/talos/releases/download/v1.2.1/digital-ocean-amd64.raw.gz"
+  url = "https://github.com/siderolabs/talos/releases/download/v1.2.3/digital-ocean-amd64.raw.gz"
   regions = ["sfo3"]
 }
 
