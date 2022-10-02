@@ -4,7 +4,7 @@ metadata:
     name: external-dns
 stringData:
     DNS_PROVIDER: ENC[AES256_GCM,data:kbwBQRBM35K7mg==,iv:oMELbaqPNlxVHiSusKSMBUSgLLa522NNIUDATXZcHTw=,tag:aPXMdMAzF9NMJet9L2z57g==,type:str]
-    CF_API_KEY: ENC[AES256_GCM,data:NZVTrT+kueCZwLvPzUGn+b2BBB0FsbBPjfVUqUsRgVzXtTr/Ng8S4A==,iv:MCL12rBwiDT/3NEPP6EKxzzpRQ33CMBaSVD8IzSn4/Y=,tag:LyXc+QcZ8MHUlG0XgvCmRQ==,type:str]
+    CF_API_TOKEN: ENC[AES256_GCM,data:xYJCxtaxqXkn+KXWisxena04AyUro3MO77ntX6NcA0PpIeg+4HEhog==,iv:5b7SJgcjMP76j23ZyWB3VaJEQTT1ZM9ONEJmGxGKcGo=,tag:VeC6BAnAVT4PZkKCfeA3Xg==,type:str]
     CF_API_EMAIL: ENC[AES256_GCM,data:8itcIXV1Ww8918G3YrvR2i6/sAE=,iv:50yMRG6ERp2R1CBD6lj+qXdonyhsxWaFVEfB0aWNSJ0=,tag:niHNM5elBscw4TJjhdySig==,type:str]
 sops:
     kms: []
@@ -12,8 +12,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-08-19T02:18:39Z"
-    mac: ENC[AES256_GCM,data:YsvZB3B9lK79k7RjrZ1X+Som/9c8U8CwnQ7IFvGoI7wJZrI2qdZ4Tiz+kiGEzvvu2a6TtPIG8lp6ISDpecasH3hAqL4tpx8jUY34N4eiLJcpvHDbVKB1xrlTOZx9NHV+23rdnnCEnrj3+ipbrYLeTqgtIz6mpKlNbxeYdsjDuxM=,iv:5vspFQ83+lu+3tROjRMrTnbg7m7fNxy+NZcsGxQ8WPQ=,tag:nZnPUinA9RUJgC84DRwbiA==,type:str]
+    lastmodified: "2022-10-02T06:33:30Z"
+    mac: ENC[AES256_GCM,data:dBFjRhg26eWT6v1+mAKtoJYXdiRLL8+nvX6YTbyRRLUNI3RrgKJK1EBJktLQgxHOIk0hFw8kgkmgP7HPGLIz3dtta72LQ7+zfFlx/c3jMFEMn9bQRJDkb73Op2rHProEe5f8ouGNC+GEhqv/FaNW09QnNOjLfU+S2h7z8Kpo8Rw=,iv:yZtUH0BInn8SgbZ609jU3+ZE1jWabU0/X7s10qm8qIc=,tag:52ET2MyzYGPdmMW3gf70rA==,type:str]
     pgp:
         - created_at: "2022-08-12T02:06:13Z"
           enc: |-
