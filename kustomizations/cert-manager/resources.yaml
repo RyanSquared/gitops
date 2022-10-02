@@ -71,7 +71,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
           - --v=2
-          - --leader-election-namespace=kube-system
+          - --leader-election-namespace=cert-manager
           env:
           - name: POD_NAMESPACE
             valueFrom:
@@ -124,7 +124,7 @@ spec:
           args:
           - --v=2
           - --cluster-resource-namespace=$(POD_NAMESPACE)
-          - --leader-election-namespace=kube-system
+          - --leader-election-namespace=cert-manager
           ports:
           - containerPort: 9402
             name: http-metrics

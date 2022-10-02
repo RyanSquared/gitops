@@ -625,7 +625,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: cert-manager-cainjector:leaderelection
-  namespace: kube-system
+  namespace: cert-manager
   labels:
     app: cainjector
     app.kubernetes.io/name: cainjector
@@ -651,7 +651,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: cert-manager:leaderelection
-  namespace: kube-system
+  namespace: cert-manager
   labels:
     app: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -697,7 +697,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: cert-manager-cainjector:leaderelection
-  namespace: kube-system
+  namespace: cert-manager
   labels:
     app: cainjector
     app.kubernetes.io/name: cainjector
@@ -720,7 +720,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: cert-manager:leaderelection
-  namespace: kube-system
+  namespace: cert-manager
   labels:
     app: cert-manager
     app.kubernetes.io/name: cert-manager
