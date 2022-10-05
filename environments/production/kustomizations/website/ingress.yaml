@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    external-dns.alpha.kubernetes.io/hostname: website.ryansquared.pub
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_cache cache;
+      proxy_cache_valid any 60m;
+      add_header X-Cache-Status $upstream_cache_status;
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: website.ryansquared.pub
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: website
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - website.ryansquared.pub
+    secretName: website-tls

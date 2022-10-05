@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      initContainers:
+      - name: git-clone
+        image: alpine/git
+        command:
+        - git
+        - clone
+        - https://github.com/RyanSquared/ryansquared.github.io
+        - /data
+        volumeMounts:
+        - name: git
+          mountPath: /data
+      - name: jekyll-build
+        image: jekyll/jekyll
+        command:
+        - jekyll
+        - build
+        - --source
+        - /data
+        - --destination
+        - /build
+        volumeMounts:
+        - name: git
+          mountPath: /data
+        - name: build
+          mountPath: /build
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: build
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: git
+        emptyDir: {}
+      - name: build
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: website

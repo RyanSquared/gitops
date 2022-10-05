@@ -5,3 +5,8 @@ bases:
 - ../../../../kustomizations/ingress-nginx
 resources:
 - namespace.yaml
+patches:
+- path: ingress-nginx-controller-configmap.patch.yaml
+  target:
+    kind: ConfigMap
+    name: ingress-nginx-controller
