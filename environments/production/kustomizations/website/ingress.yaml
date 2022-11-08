@@ -4,7 +4,7 @@ metadata:
   name: website
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    external-dns.alpha.kubernetes.io/hostname: website.ryansquared.pub
+    external-dns.alpha.kubernetes.io/hostname: ryansquared.pub
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
     nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: website.ryansquared.pub
+  - host: ryansquared.pub
     http:
       paths:
       - path: /
@@ -24,7 +24,14 @@ spec:
             name: website
             port:
               number: 80
+      - path: /static
+        pathType: Prefix
+        backend:
+          service:
+            name: website-static
+            port:
+              number: 80
   tls:
   - hosts:
-    - website.ryansquared.pub
+    - ryansquared.pub
     secretName: website-tls
