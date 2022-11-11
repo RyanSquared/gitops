@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- calico
+- cert-manager
+- digitalocean-cloud-controller-manager
+- digitalocean-csi
+- external-dns
+- ingress-nginx
+- website
+- website-beta

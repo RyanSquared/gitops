@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      initContainers:
+      - name: copy-static
+        image: ghcr.io/ryansquared/opaque
+        command: ["/bin/cp"]
+        args:
+        - -r
+        - /usr/share/opaque/static
+        # note: will copy the single folder `static` into `/tmp`, meaning
+        # the result is `/tmp/static`
+        - /tmp/output
+        volumeMounts:
+        - name: static
+          mountPath: /tmp/output
+      containers:
+      - name: opaque
+        image: ghcr.io/ryansquared/opaque
+        ports:
+        - containerPort: 8000
+      - name: opaque-static
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: static
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: static
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+  selector:
+    app: website
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-static
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: website
