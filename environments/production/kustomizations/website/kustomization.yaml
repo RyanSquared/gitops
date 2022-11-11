@@ -5,3 +5,7 @@ resources:
 - namespace.yaml
 - resources.yaml
 - ingress.yaml
+configMapGenerator:
+- name: opaque-config
+  files:
+  - files/config.yaml

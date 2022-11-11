@@ -30,6 +30,12 @@ spec:
         image: ghcr.io/ryansquared/opaque
         ports:
         - containerPort: 8000
+        args:
+        - -c
+        - /etc/opaque/config.yaml
+        volumeMounts:
+        - name: config
+          mountPath: /etc/opaque
       - name: opaque-static
         image: nginx
         ports:
@@ -40,6 +46,9 @@ spec:
       volumes:
       - name: static
         emptyDir: {}
+      - name: config
+        configMap:
+          name: opaque-config
 ---
 apiVersion: v1
 kind: Service

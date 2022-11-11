@@ -1,0 +1,8 @@
+name: Enigma
+description: ""
+author:
+  name: "Ryan Heywood"
+  email: "me@ryansquared.pub"
+static_path: static
+url: https://beta.ryansquared.pub
+bind_address: 0.0.0.0:8000
