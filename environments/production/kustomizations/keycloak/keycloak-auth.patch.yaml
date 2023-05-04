@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      containers:
+      - name: keycloak
+        args: ["start"]
+        env:
+        - name: KEYCLOAK_ADMIN
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KEYCLOAK_ADMIN
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KEYCLOAK_ADMIN_PASSWORD
+        - name: KC_DB
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KC_DB
+        - name: KC_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KC_DB_USERNAME
+        - name: KC_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KC_DB_PASSWORD
+        - name: KC_DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-config
+              key: KC_DB_URL
+        - name: KC_HOSTNAME_URL
+          valueFrom:
+            configMapKeyRef:
+              name: keycloak-config
+              key: KC_HOSTNAME_URL
