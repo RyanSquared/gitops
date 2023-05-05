@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: forgejo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    external-dns.alpha.kubernetes.io/hostname: forgejo.ryansquared.pub
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: forgejo.ryansquared.pub
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: forgejo
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - forgejo.ryansquared.pub
+    secretName: website-tls

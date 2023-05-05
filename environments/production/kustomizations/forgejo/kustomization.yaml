@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: forgejo
+bases:
+- ../../../../kustomizations/forgejo
+resources:
+- namespace.yaml
+- ingress.yaml
+generators:
+- secret-generator.yaml
+configMapGenerator:
+- name: forgejo-config
+  literals:
+  - GITEA__DEFAULT__APP_NAME=Forgejandro
+  - GITEA__SERVER__DOMAIN=forgejo.ryansquared.pub
+  - GITEA__SERVER__SSH_DOMAIN=forgejo.ryansquared.pub
+  - GITEA__SERVER__ROOT_URL=https://forgejo.ryansquared.pub
+  - GITEA__SERVICE__NO_REPLY_ADDRESS=noreply.ryansquared.pub
+- name: forgejo-config-template
+  files:
+  - app_template.ini

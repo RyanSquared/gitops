@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: forgejo
+  labels:
+    app: forgejo
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: forgejo
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: forgejo
+  labels:
+    app: forgejo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgejo
+  serviceName: forgejo
+  template:
+    metadata:
+      labels:
+        app: forgejo
+    spec:
+      # To allow ssh and web to coexist
+      shareProcessNamespace: true
+      initContainers:
+      - name: config-templater
+        image: codeberg.org/forgejo/forgejo:1.19.3-0
+        command: ["environment-to-ini"]
+        args:
+        - --config
+        - /input/app_template.ini
+        - --out
+        - /output/app.ini
+        envFrom:
+        - configMapRef:
+            name: forgejo-config
+        - secretRef:
+            name: forgejo-config
+        volumeMounts:
+        - name: forgejo-config-template
+          mountPath: /input
+        - name: forgejo-config
+          mountPath: /output
+      - name: forgejo-migrate
+        image: codeberg.org/forgejo/forgejo:1.19.3-0
+        command: ["forgejo"]
+        args:
+        - -c
+        - /etc/forgejo/app.ini
+        - migrate
+        volumeMounts:
+        - name: forgejo-data
+          mountPath: /data
+        - name: forgejo-config
+          mountPath: /etc/forgejo
+      - name: forgejo-oidc
+        image: codeberg.org/forgejo/forgejo:1.19.3-0
+        command: ["sh"]
+        args:
+        - -c
+        - >-
+          forgejo -c /etc/forgejo/app.ini admin auth add-oauth
+          --name $(AUTH_PROVIDER_NAME)
+          --provider openidConnect
+          --key $(AUTH_PROVIDER_KEY)
+          --secret $(AUTH_PROVIDER_SECRET)
+          --auto-discover-url $(AUTH_PROVIDER_URL)
+          || true
+        envFrom:
+        - secretRef:
+            name: keycloak-client
+        volumeMounts:
+        - name: forgejo-data
+          mountPath: /data
+        - name: forgejo-config
+          mountPath: /etc/forgejo
+      containers:
+      - name: forgejo-web
+        image: codeberg.org/forgejo/forgejo:1.19.3-0
+        command: ["forgejo"]
+        args:
+        - -c
+        - /etc/forgejo/app.ini
+        - web
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+        - name: forgejo-data
+          mountPath: /data
+        - name: forgejo-config
+          mountPath: /etc/forgejo
+      volumes:
+      - name: forgejo-config
+        emptyDir: {}
+      - name: forgejo-config-template
+        configMap:
+          name: forgejo-config-template
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+  volumeClaimTemplates:
+  - metadata:
+      name: forgejo-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
