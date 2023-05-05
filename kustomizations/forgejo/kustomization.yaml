@@ -3,9 +3,3 @@ kind: Kustomization
 namespace: forgejo
 resources:
 - resources.yaml
-configMapGenerator:
-- name: forgejo-oidc-hack
-  files:
-  - setup
-  - run
-  - finish
