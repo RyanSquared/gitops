@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_cache cache;
-      proxy_cache_valid any 60m;
+      proxy_cache_valid any 1m;
       add_header X-Cache-Status $upstream_cache_status;
 spec:
   ingressClassName: nginx
